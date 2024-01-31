@@ -1,9 +1,10 @@
-package com.slyene.calories.data
+package com.slyene.calories.data.source.local
 
-import androidx.room.Upsert
+import com.slyene.calories.data.Dish
+import com.slyene.calories.data.Meal
 import kotlinx.coroutines.flow.Flow
 
-interface CaloryRepository {
+interface LocalRepository {
     suspend fun upsertDish(item: Dish)
 
     suspend fun deleteDish(item: Dish)
