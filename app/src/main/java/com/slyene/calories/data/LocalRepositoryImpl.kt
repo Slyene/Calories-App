@@ -4,8 +4,11 @@ import com.slyene.calories.data.source.local.DishDao
 import com.slyene.calories.data.source.local.LocalRepository
 import com.slyene.calories.data.source.local.MealDao
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class LocalRepositoryImpl(
+@Singleton
+class LocalRepositoryImpl @Inject constructor(
     private val dishDao: DishDao,
     private val mealDao: MealDao
 ) : LocalRepository {
