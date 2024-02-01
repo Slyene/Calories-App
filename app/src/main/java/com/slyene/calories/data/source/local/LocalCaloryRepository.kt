@@ -1,17 +1,17 @@
-package com.slyene.calories.data
+package com.slyene.calories.data.source.local
 
-import com.slyene.calories.data.source.local.DishDao
-import com.slyene.calories.data.source.local.LocalRepository
-import com.slyene.calories.data.source.local.MealDao
+import com.slyene.calories.data.CaloryRepository
+import com.slyene.calories.data.Dish
+import com.slyene.calories.data.Meal
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class LocalRepositoryImpl @Inject constructor(
+class LocalCaloryRepository @Inject constructor(
     private val dishDao: DishDao,
     private val mealDao: MealDao
-) : LocalRepository {
+) : CaloryRepository {
     override suspend fun upsertDish(item: Dish) {
         dishDao.upsert(item)
     }

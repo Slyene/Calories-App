@@ -1,10 +1,8 @@
-package com.slyene.calories.data.source.local
+package com.slyene.calories.data
 
-import com.slyene.calories.data.Dish
-import com.slyene.calories.data.Meal
 import kotlinx.coroutines.flow.Flow
 
-interface LocalRepository {
+interface CaloryRepository {
     suspend fun upsertDish(item: Dish)
 
     suspend fun deleteDish(item: Dish)
