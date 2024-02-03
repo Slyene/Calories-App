@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import com.slyene.calories.ui.theme.CaloriesTheme
 import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
+@AndroidEntryPoint()
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

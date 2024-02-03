@@ -1,40 +1,46 @@
-package com.slyene.calories.data.source.network
+package com.slyene.calories.data.source.local
 
-import com.slyene.calories.data.CaloryRepository
+import com.slyene.calories.data.CaloriesRepository
 import com.slyene.calories.data.Dish
 import com.slyene.calories.data.Meal
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class NetworkCaloryRepository() : CaloryRepository {
+@Singleton
+class LocalCaloriesRepository @Inject constructor(
+    private val dishDao: DishDao,
+    private val mealDao: MealDao
+) : CaloriesRepository {
     override suspend fun upsertDish(item: Dish) {
-        TODO("Not yet implemented")
+        dishDao.upsert(item)
     }
 
     override suspend fun deleteDish(item: Dish) {
-        TODO("Not yet implemented")
+        dishDao.delete(item)
     }
 
     override fun getAllDishes(): Flow<List<Dish>> {
-        TODO("Not yet implemented")
+        return dishDao.getAll()
     }
 
     override fun getDishById(id: Int): Flow<Dish> {
-        TODO("Not yet implemented")
+        return dishDao.getById(id)
     }
 
     override suspend fun upsertMeal(item: Meal) {
-        TODO("Not yet implemented")
+        mealDao.upsert(item)
     }
 
     override suspend fun deleteMeal(item: Meal) {
-        TODO("Not yet implemented")
+        mealDao.delete(item)
     }
 
     override fun getAllMeals(): Flow<List<Meal>> {
-        TODO("Not yet implemented")
+        return mealDao.getAll()
     }
 
     override fun getMealById(id: Int): Flow<Meal> {
-        TODO("Not yet implemented")
+        return mealDao.getById(id)
     }
 }

@@ -2,12 +2,12 @@ package com.slyene.calories.di
 
 import android.content.Context
 import androidx.room.Room
-import com.slyene.calories.data.CaloryRepository
-import com.slyene.calories.data.source.local.CaloryDatabase
+import com.slyene.calories.data.CaloriesRepository
+import com.slyene.calories.data.source.local.CaloriesDatabase
 import com.slyene.calories.data.source.local.DishDao
-import com.slyene.calories.data.source.local.LocalCaloryRepository
+import com.slyene.calories.data.source.local.LocalCaloriesRepository
 import com.slyene.calories.data.source.local.MealDao
-import com.slyene.calories.data.source.network.NetworkCaloryRepository
+import com.slyene.calories.data.source.network.NetworkCaloriesRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -22,11 +22,11 @@ abstract class RepositoryModule {
 
     @Singleton
     @Binds
-    abstract fun bindLocalCaloryRepository(repository: LocalCaloryRepository): CaloryRepository
+    abstract fun bindLocalCaloryRepository(repository: LocalCaloriesRepository): CaloriesRepository
 
     @Singleton
     @Binds
-    abstract fun bindNetworkCaloryRepository(repository: NetworkCaloryRepository): CaloryRepository
+    abstract fun bindNetworkCaloryRepository(repository: NetworkCaloriesRepository): CaloriesRepository
 }
 
 @Module
@@ -35,17 +35,17 @@ object DatabaseModule {
 
     @Singleton
     @Provides
-    fun provideDataBase(@ApplicationContext context: Context): CaloryDatabase {
+    fun provideDataBase(@ApplicationContext context: Context): CaloriesDatabase {
         return Room.databaseBuilder(
             context.applicationContext,
-            CaloryDatabase::class.java,
-            "CaloryDatabase.db"
+            CaloriesDatabase::class.java,
+            "CaloriesDatabase.db"
         ).build()
     }
 
     @Provides
-    fun provideDishDao(database: CaloryDatabase): DishDao = database.getDishDao()
+    fun provideDishDao(database: CaloriesDatabase): DishDao = database.getDishDao()
 
     @Provides
-    fun provideMealDao(database: CaloryDatabase): MealDao = database.getMealDao()
+    fun provideMealDao(database: CaloriesDatabase): MealDao = database.getMealDao()
 }

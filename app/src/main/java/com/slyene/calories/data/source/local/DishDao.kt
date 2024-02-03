@@ -17,9 +17,9 @@ interface DishDao {
     @Delete
     suspend fun delete(item: Dish)
 
-    @Query("SELECT * FROM meals")
+    @Query("SELECT * FROM dishes")
     fun getAll(): Flow<List<Dish>>
 
-    @Query("SELECT * FROM meals WHERE id = :id")
+    @Query("SELECT * FROM dishes WHERE id = :id")
     fun getById(id: Int): Flow<Dish>
 }

@@ -42,7 +42,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.8"
     }
     packaging {
         resources {
@@ -74,7 +74,7 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:${rootProject.extra["nav_version"]}")
 
     //Coil
-    implementation("io.coil-kt:coil:2.5.0")
+    implementation("io.coil-kt:coil-compose:2.5.0")
 
     implementation("androidx.sqlite:sqlite-ktx:${rootProject.extra["sqlite_version"]}")
     implementation("androidx.core:core-ktx:1.12.0")

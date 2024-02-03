@@ -6,7 +6,7 @@ import com.slyene.calories.data.Dish
 import com.slyene.calories.data.Meal
 
 @Database(entities = [Dish::class, Meal::class], version = 1, exportSchema = false)
-abstract class CaloryDatabase : RoomDatabase() {
+abstract class CaloriesDatabase : RoomDatabase() {
     abstract fun getDishDao(): DishDao
     abstract fun getMealDao(): MealDao
 }

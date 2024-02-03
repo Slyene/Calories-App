@@ -12,7 +12,7 @@ data class Dish(
     val description: String = "",
     @ColumnInfo(name = "img_src")
     val imgSrc: String = "",
-    val proteins: Int = 0,
-    val fats: Int = 0,
-    val carbohydrates: Int = 0
+    val proteins: String = "",
+    val fats: String = "",
+    val carbohydrates: String = ""
 )

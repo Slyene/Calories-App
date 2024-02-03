@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Calories</string>
+    <string name="carbs">CARBS</string>
+    <string name="fats">FATS</string>
+    <string name="proteins">PROTEINS</string>
+
+    <!--Accessibility-->
+
+    <string name="dish_image">Image of the dish</string>
 </resources>

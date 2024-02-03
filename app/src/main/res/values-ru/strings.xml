@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Калории</string>
+    <string name="carbs">УГЛЕВОДЫ</string>
+    <string name="fats">ЖИРЫ</string>
+    <string name="proteins">БЕЛКИ</string>
+
+    <!--Accessibility-->
+
+    <string name="dish_image">Изображение блюда</string>
+</resources>

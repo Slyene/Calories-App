@@ -9,7 +9,6 @@ import java.util.Date
 data class Meal(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-    val dishes: List<Dish> = listOf(),
     @ColumnInfo(name = "date_time")
-    val dateTime: Date = Date()
+    val dateTime: String = ""
 )
