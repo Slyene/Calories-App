@@ -7,4 +7,5 @@
     <!--Accessibility-->
 
     <string name="dish_image">Image of the dish</string>
+    <string name="add_dish_fab">Add dish floating action button</string>
 </resources>

@@ -22,11 +22,11 @@ abstract class RepositoryModule {
 
     @Singleton
     @Binds
-    abstract fun bindLocalCaloryRepository(repository: LocalCaloriesRepository): CaloriesRepository
+    abstract fun bindLocalCaloriesRepository(repository: LocalCaloriesRepository): CaloriesRepository
 
     @Singleton
     @Binds
-    abstract fun bindNetworkCaloryRepository(repository: NetworkCaloriesRepository): CaloriesRepository
+    abstract fun bindNetworkCaloriesRepository(repository: NetworkCaloriesRepository): CaloriesRepository
 }
 
 @Module

@@ -8,4 +8,5 @@
     <!--Accessibility-->
 
     <string name="dish_image">Изображение блюда</string>
+    <string name="add_dish_fab">Плавающая кнопка добавления блюда</string>
 </resources>

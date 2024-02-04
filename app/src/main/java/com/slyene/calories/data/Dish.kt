@@ -14,5 +14,5 @@ data class Dish(
     val imgSrc: String = "",
     val proteins: String = "",
     val fats: String = "",
-    val carbohydrates: String = ""
+    val carbs: String = ""
 )

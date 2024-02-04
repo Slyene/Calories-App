@@ -1,30 +1,45 @@
 package com.slyene.calories.ui.dishes
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Warning
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import coil.compose.AsyncImagePainter
 import com.slyene.calories.R
 import com.slyene.calories.data.Dish
 import com.slyene.calories.ui.theme.CaloriesTheme
@@ -47,14 +62,32 @@ fun DishItem(
             modifier = Modifier.fillMaxSize(),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            AsyncImage(
-                model = item.imgSrc,
-                contentDescription = stringResource(id = R.string.dish_image),
+            Box(
                 modifier = Modifier
+                    .size(100.dp)
                     .padding(12.dp)
-                    .clip(RoundedCornerShape(10.dp)),
-                placeholder = painterResource(id = R.drawable.ic_launcher_background),
-            )
+                    .clip(RoundedCornerShape(10.dp))
+                    .background(MaterialTheme.colorScheme.outlineVariant)
+            ) {
+                if (item.imgSrc.isNotBlank()) {
+                    AsyncImage(
+                        model = item.imgSrc,
+                        contentDescription = stringResource(id = R.string.dish_image),
+                        modifier = Modifier
+                            .fillMaxSize(),
+                        contentScale = ContentScale.Crop
+                    )
+                } else {
+                    Image(
+                        imageVector = Icons.Rounded.Warning,
+                        contentDescription = "",
+                        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.outline),
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(12.dp)
+                    )
+                }
+            }
             Column(
                 modifier = Modifier
                     .padding(vertical = 12.dp)
@@ -64,33 +97,58 @@ fun DishItem(
             ) {
                 Text(
                     text = item.name,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                     fontWeight = FontWeight.Bold
                 )
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(10.dp))
-                        .background(MaterialTheme.colorScheme.surface)
+                        .background(MaterialTheme.colorScheme.tertiaryContainer)
                         .padding(8.dp),
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Text(text = stringResource(id = R.string.proteins), fontWeight = FontWeight.Bold, fontSize = 10.sp)
-                        Text(text = item.proteins)
+                        Text(
+                            text = stringResource(id = R.string.proteins),
+                            color = MaterialTheme.colorScheme.onTertiaryContainer,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 10.sp
+                        )
+                        Text(
+                            text = item.proteins,
+                            color = MaterialTheme.colorScheme.onTertiaryContainer
+                        )
                     }
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Text(text = stringResource(id = R.string.fats), fontWeight = FontWeight.Bold, fontSize = 10.sp)
-                        Text(text = item.fats)
+                        Text(
+                            text = stringResource(id = R.string.fats),
+                            color = MaterialTheme.colorScheme.onTertiaryContainer,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 10.sp
+                        )
+                        Text(
+                            text = item.fats,
+                            color = MaterialTheme.colorScheme.onTertiaryContainer
+                        )
                     }
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Text(text = stringResource(id = R.string.carbs), fontWeight = FontWeight.Bold, fontSize = 10.sp)
-                        Text(text = item.carbohydrates)
+                        Text(
+                            text = stringResource(id = R.string.carbs),
+                            color = MaterialTheme.colorScheme.onTertiaryContainer,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 10.sp
+                        )
+                        Text(
+                            text = item.carbs,
+                            color = MaterialTheme.colorScheme.onTertiaryContainer
+                        )
                     }
                 }
             }
@@ -101,16 +159,20 @@ fun DishItem(
 @Preview(showBackground = true, locale = "ru")
 @Composable
 fun DishItemPreview() {
-    CaloriesTheme {
-        DishItem(
-            item = Dish(
-                name = "dish",
-                description = "description",
-                proteins = "100",
-                fats = "100",
-                carbohydrates = "100"
-            ),
-            onClick = {}
-        )
+    CaloriesTheme(
+        darkTheme = false
+    ) {
+        Surface {
+            DishItem(
+                item = Dish(
+                    name = "dish",
+                    description = "description",
+                    proteins = "100",
+                    fats = "100",
+                    carbs = "100"
+                ),
+                onClick = {}
+            )
+        }
     }
 }
