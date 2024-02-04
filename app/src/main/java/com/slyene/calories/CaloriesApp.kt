@@ -3,12 +3,14 @@ package com.slyene.calories
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.slyene.calories.ui.dishes.DishesScreen
+import com.slyene.calories.ui.dishes.DishesViewModel
 
 @Composable
 fun CaloriesApp() {
+    val dishesViewModel: DishesViewModel = viewModel()
     DishesScreen(
-        viewModel = viewModel(),
-        onFabClick = { },
+        viewModel = dishesViewModel,
+        onFabClick = { dishesViewModel.addDish() },
         onDishClick = {}
     )
 }

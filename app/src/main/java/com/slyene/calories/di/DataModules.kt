@@ -2,6 +2,7 @@ package com.slyene.calories.di
 
 import android.content.Context
 import androidx.room.Room
+import androidx.room.migration.Migration
 import com.slyene.calories.data.CaloriesRepository
 import com.slyene.calories.data.source.local.CaloriesDatabase
 import com.slyene.calories.data.source.local.DishDao
@@ -37,10 +38,11 @@ object DatabaseModule {
     @Provides
     fun provideDataBase(@ApplicationContext context: Context): CaloriesDatabase {
         return Room.databaseBuilder(
-            context.applicationContext,
-            CaloriesDatabase::class.java,
-            "CaloriesDatabase.db"
-        ).build()
+            context = context.applicationContext,
+            klass = CaloriesDatabase::class.java,
+            name = "CaloriesDatabase.db"
+        ).fallbackToDestructiveMigration()
+            .build()
     }
 
     @Provides
