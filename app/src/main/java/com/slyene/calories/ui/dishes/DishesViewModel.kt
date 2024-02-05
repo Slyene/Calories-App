@@ -1,5 +1,10 @@
 package com.slyene.calories.ui.dishes
 
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.State
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.slyene.calories.data.Dish
@@ -16,25 +21,28 @@ import javax.inject.Inject
 class DishesViewModel @Inject constructor(
     private val localCaloriesRepository: LocalCaloriesRepository
 ) : ViewModel() {
-    val uiState: StateFlow<DishesUiState> = localCaloriesRepository.getAllDishes().map {
-        DishesUiState(dishesList = it)
+    private val _dishesUiState: MutableState<DishesUiState> = mutableStateOf(DishesUiState())
+    val dishesUiState: State<DishesUiState> = _dishesUiState
+
+    val dishesListUiState: StateFlow<DishesListUiState> = localCaloriesRepository.getAllDishes().map {
+        DishesListUiState(dishesList = it)
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5_000L),
-        initialValue = DishesUiState()
+        initialValue = DishesListUiState()
     )
 
-    fun addDish() {
+    fun saveToLocalStorage(item: Dish) {
         viewModelScope.launch {
-            localCaloriesRepository.upsertDish(
-                Dish(
-                    name = "Dish",
-                    description = "Description",
-                    proteins = "124",
-                    fats = "214",
-                    carbs = "235"
-                )
-            )
+            localCaloriesRepository.upsertDish(item)
         }
+    }
+
+    fun selectDish(item: Dish) {
+        _dishesUiState.value = _dishesUiState.value.copy(selectedDish = item)
+    }
+
+    fun changeDialogShowState() {
+        _dishesUiState.value = _dishesUiState.value.copy(showDialog = !_dishesUiState.value.showDialog)
     }
 }

@@ -22,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.slyene.calories.R
+import com.slyene.calories.data.Dish
 import com.slyene.calories.ui.theme.CaloriesTheme
 
 @Composable
@@ -29,14 +30,23 @@ fun DishesScreen(
     modifier: Modifier = Modifier,
     viewModel: DishesViewModel = viewModel(),
     onFabClick: () -> Unit,
-    onDishClick: (Int) -> Unit
+    onDishClick: (Int) -> Unit,
+    onSaveClick: (Dish) -> Unit
 ) {
-    val uiState by viewModel.uiState.collectAsState()
+    val dishesUiState by viewModel.dishesUiState
+    val dishesListUiState by viewModel.dishesListUiState.collectAsState()
 
     Scaffold(
         modifier = modifier,
         floatingActionButton = { FAB(onClick = onFabClick) }
     ) {
+        if (dishesUiState.showDialog) {
+            DishesFullscreenDialog(
+                onSaveClick = onSaveClick,
+                onDismissClick = viewModel::changeDialogShowState,
+                item = dishesUiState.selectedDish
+            )
+        }
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
             contentPadding = PaddingValues(
@@ -44,7 +54,7 @@ fun DishesScreen(
                 bottom = it.calculateBottomPadding()
             )
         ) {
-            items(uiState.dishesList) { dish ->
+            items(dishesListUiState.dishesList) { dish ->
                 DishItem(
                     item = dish,
                     modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp),
@@ -74,7 +84,8 @@ fun DishesScreenPreview() {
         Surface {
             DishesScreen(
                 onFabClick = {},
-                onDishClick = {}
+                onDishClick = {},
+                onSaveClick = {}
             )
         }
     }
