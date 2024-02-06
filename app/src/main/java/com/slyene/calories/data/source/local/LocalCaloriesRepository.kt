@@ -24,7 +24,7 @@ class LocalCaloriesRepository @Inject constructor(
         return dishDao.getAll()
     }
 
-    override fun getDishById(id: Int): Flow<Dish> {
+    override suspend fun getDishById(id: Int): Dish {
         return dishDao.getById(id)
     }
 

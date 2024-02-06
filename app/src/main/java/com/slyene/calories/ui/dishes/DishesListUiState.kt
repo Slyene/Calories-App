@@ -7,6 +7,6 @@ data class DishesListUiState(
 )
 
 data class DishesUiState(
-    val selectedDish: Dish? = null,
+    val selectedDish: Int = 0,
     val showDialog: Boolean = false
 )

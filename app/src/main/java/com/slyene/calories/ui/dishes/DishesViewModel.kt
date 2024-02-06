@@ -38,8 +38,8 @@ class DishesViewModel @Inject constructor(
         }
     }
 
-    fun selectDish(item: Dish) {
-        _dishesUiState.value = _dishesUiState.value.copy(selectedDish = item)
+    fun selectDish(id: Int) {
+        _dishesUiState.value = _dishesUiState.value.copy(selectedDish = id)
     }
 
     fun changeDialogShowState() {

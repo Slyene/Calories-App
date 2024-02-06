@@ -18,7 +18,7 @@ class NetworkCaloriesRepository() : CaloriesRepository {
         TODO("Not yet implemented")
     }
 
-    override fun getDishById(id: Int): Flow<Dish> {
+    override suspend fun getDishById(id: Int): Dish {
         TODO("Not yet implemented")
     }
 

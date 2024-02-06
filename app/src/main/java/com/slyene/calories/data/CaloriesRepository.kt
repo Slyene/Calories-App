@@ -9,7 +9,7 @@ interface CaloriesRepository {
 
     fun getAllDishes(): Flow<List<Dish>>
 
-    fun getDishById(id: Int): Flow<Dish>
+    suspend fun getDishById(id: Int): Dish
 
     suspend fun upsertMeal(item: Meal)
 

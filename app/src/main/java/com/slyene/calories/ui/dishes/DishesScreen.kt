@@ -44,7 +44,7 @@ fun DishesScreen(
             DishesFullscreenDialog(
                 onSaveClick = onSaveClick,
                 onDismissClick = viewModel::changeDialogShowState,
-                item = dishesUiState.selectedDish
+                selectedDish = dishesUiState.selectedDish
             )
         }
         LazyColumn(

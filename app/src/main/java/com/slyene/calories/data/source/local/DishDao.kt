@@ -21,5 +21,5 @@ interface DishDao {
     fun getAll(): Flow<List<Dish>>
 
     @Query("SELECT * FROM dishes WHERE id = :id")
-    fun getById(id: Int): Flow<Dish>
+     suspend fun getById(id: Int): Dish
 }

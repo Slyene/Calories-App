@@ -11,10 +11,16 @@ fun CaloriesApp() {
     val dishesViewModel: DishesViewModel = viewModel()
     DishesScreen(
         viewModel = dishesViewModel,
-        onFabClick = { dishesViewModel.changeDialogShowState() },
-        onDishClick = { dishesViewModel.changeDialogShowState() },
-        onSaveClick = {
-            dishesViewModel.saveToLocalStorage(it)
+        onFabClick = {
+            dishesViewModel.selectDish(0)
+            dishesViewModel.changeDialogShowState()
+        },
+        onDishClick = { dishId ->
+            dishesViewModel.selectDish(dishId)
+            dishesViewModel.changeDialogShowState()
+        },
+        onSaveClick = { dish ->
+            dishesViewModel.saveToLocalStorage(dish)
             dishesViewModel.changeDialogShowState()
         }
     )
