@@ -1,9 +1,7 @@
 package com.slyene.calories.ui.dishes
 
+import com.slyene.calories.data.Dish
+
 data class DishesFullscreenDialogUiState(
-    val imgSrc: String = "",
-    val description: String = "",
-    val proteins: String = "",
-    val fats: String = "",
-    val carbs: String = "",
+    val item: Dish = Dish()
 )

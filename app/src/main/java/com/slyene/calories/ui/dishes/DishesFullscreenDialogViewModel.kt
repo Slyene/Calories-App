@@ -1,13 +1,14 @@
 package com.slyene.calories.ui.dishes
 
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.slyene.calories.data.Dish
 import com.slyene.calories.data.source.local.LocalCaloriesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -15,29 +16,28 @@ import javax.inject.Inject
 class DishesFullscreenDialogViewModel @Inject constructor(
     private val localCaloriesRepository: LocalCaloriesRepository,
 ) : ViewModel() {
-    private val _uiState: MutableState<DishesFullscreenDialogUiState> = mutableStateOf(
-        DishesFullscreenDialogUiState()
-    )
-    val uiState: State<DishesFullscreenDialogUiState> = _uiState
+    private val _uiState: MutableStateFlow<DishesFullscreenDialogUiState> =
+        MutableStateFlow(DishesFullscreenDialogUiState())
+    val uiState: StateFlow<DishesFullscreenDialogUiState> = _uiState.asStateFlow()
 
     fun getDish(id: Int) {
-        var dish: Dish? = null
+        var dish: Dish?
+
         viewModelScope.launch {
             dish = localCaloriesRepository.getDishById(id)
-
-            updateState(
-                DishesFullscreenDialogUiState(
-                    imgSrc = dish?.imgSrc ?: "",
-                    description = dish?.description ?: "",
-                    proteins = dish?.proteins ?: "",
-                    fats = dish?.fats ?: "",
-                    carbs = dish?.fats ?: ""
-                )
-            )
+            updateState(item = dish ?: Dish())
         }
     }
 
-    fun updateState(state: DishesFullscreenDialogUiState) {
-        _uiState.value = state
+    fun updateState(item: Dish) {
+        _uiState.update {
+            it.copy(item = item)
+        }
+    }
+
+    fun saveToLocalStorage() {
+        viewModelScope.launch {
+            localCaloriesRepository.upsertDish(uiState.value.item)
+        }
     }
 }
