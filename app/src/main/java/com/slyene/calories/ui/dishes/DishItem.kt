@@ -20,26 +20,17 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import coil.compose.AsyncImagePainter
 import com.slyene.calories.R
 import com.slyene.calories.data.Dish
 import com.slyene.calories.ui.theme.CaloriesTheme
@@ -69,7 +60,7 @@ fun DishItem(
                     .clip(RoundedCornerShape(10.dp))
                     .background(MaterialTheme.colorScheme.outlineVariant)
             ) {
-                if (item.imgSrc.isNotBlank()) {
+                if (item.imgSrc != null) {
                     AsyncImage(
                         model = item.imgSrc,
                         contentDescription = stringResource(id = R.string.dish_image),
@@ -118,7 +109,7 @@ fun DishItem(
                             fontSize = 10.sp
                         )
                         Text(
-                            text = item.proteins,
+                            text = item.proteins.ifEmpty { "0" },
                             color = MaterialTheme.colorScheme.onTertiaryContainer
                         )
                     }
@@ -132,7 +123,7 @@ fun DishItem(
                             fontSize = 10.sp
                         )
                         Text(
-                            text = item.fats,
+                            text = item.fats.ifEmpty { "0" },
                             color = MaterialTheme.colorScheme.onTertiaryContainer
                         )
                     }
@@ -146,7 +137,7 @@ fun DishItem(
                             fontSize = 10.sp
                         )
                         Text(
-                            text = item.carbs,
+                            text = item.carbs.ifEmpty { "0" },
                             color = MaterialTheme.colorScheme.onTertiaryContainer
                         )
                     }

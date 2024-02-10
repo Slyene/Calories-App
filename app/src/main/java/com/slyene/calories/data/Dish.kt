@@ -1,5 +1,6 @@
 package com.slyene.calories.data
 
+import android.net.Uri
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -11,7 +12,7 @@ data class Dish(
     val name: String = "",
     val description: String = "",
     @ColumnInfo(name = "img_src")
-    val imgSrc: String = "",
+    val imgSrc: Uri? = null,
     val proteins: String = "",
     val fats: String = "",
     val carbs: String = ""

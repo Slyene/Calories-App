@@ -35,7 +35,7 @@ class DishesFullscreenDialogViewModel @Inject constructor(
         }
     }
 
-    fun saveToLocalStorage() {
+    fun saveDishToLocalStorage() {
         viewModelScope.launch {
             localCaloriesRepository.upsertDish(uiState.value.item)
         }

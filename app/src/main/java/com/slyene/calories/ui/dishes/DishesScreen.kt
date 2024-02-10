@@ -1,6 +1,5 @@
 package com.slyene.calories.ui.dishes
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -13,16 +12,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.slyene.calories.data.Dish
 import com.slyene.calories.ui.theme.CaloriesTheme
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun DishesScreen(
+    dishesDialogViewModel: DishesFullscreenDialogViewModel,
+    onDishClick: (Int) -> Unit,
+    onSaveClick: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: DishesViewModel = viewModel(),
-    onDishClick: (Int) -> Unit,
-    onSaveClick: (Dish) -> Unit
 ) {
     val dishesUiState by viewModel.dishesUiState.collectAsState()
     val dishesListUiState by viewModel.dishesListUiState.collectAsState()
@@ -31,7 +29,9 @@ fun DishesScreen(
         DishesFullscreenDialog(
             onSaveClick = onSaveClick,
             onDismissClick = viewModel::changeDialogShowState,
-            selectedDish = dishesUiState.selectedDish
+            selectedDish = dishesUiState.selectedDish,
+            viewModel = dishesDialogViewModel,
+            modifier = Modifier.padding(15.dp)
         )
     }
     LazyColumn(
@@ -53,6 +53,7 @@ fun DishesScreenPreview() {
     CaloriesTheme {
         Surface {
             DishesScreen(
+                dishesDialogViewModel = viewModel(),
                 onDishClick = {},
                 onSaveClick = {}
             )
