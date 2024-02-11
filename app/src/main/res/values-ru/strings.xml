@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Калории</string>
-    <string name="carbs">УГЛЕВОДЫ</string>
-    <string name="fats">ЖИРЫ</string>
-    <string name="proteins">БЕЛКИ</string>
+    <string name="dish_name">Название</string>
+    <string name="dish_description">Описание</string>
+    <string name="proteins">Белки</string>
+    <string name="fats">Жиры</string>
+    <string name="carbs">Углеводы</string>
 
     <!--Accessibility-->
 
     <string name="dish_image">Изображение блюда</string>
-    <string name="add_dish_fab">Плавающая кнопка добавления блюда</string>
+    <string name="add_dish_fab">Кнопка добавления блюда</string>
+    <string name="save_dish_fab">Кнопка сохранения блюда</string>
 </resources>

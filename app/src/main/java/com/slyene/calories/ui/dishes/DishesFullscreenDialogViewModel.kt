@@ -35,6 +35,18 @@ class DishesFullscreenDialogViewModel @Inject constructor(
         }
     }
 
+    fun validateInput() {
+        with(uiState.value.item) {
+            _uiState.update {
+                if (name.isEmpty() || name.isBlank()) {
+                    it.copy(isInvalidInput = true)
+                } else {
+                    it.copy(isInvalidInput = false)
+                }
+            }
+        }
+    }
+
     fun saveDishToLocalStorage() {
         viewModelScope.launch {
             localCaloriesRepository.upsertDish(uiState.value.item)

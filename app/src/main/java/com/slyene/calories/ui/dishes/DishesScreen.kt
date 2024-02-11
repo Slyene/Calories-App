@@ -1,5 +1,6 @@
 package com.slyene.calories.ui.dishes
 
+import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -29,15 +30,19 @@ fun DishesScreen(
         DishesFullscreenDialog(
             onSaveClick = onSaveClick,
             onDismissClick = viewModel::changeDialogShowState,
+            onBackPressed = viewModel::changeDialogShowState,
             selectedDish = dishesUiState.selectedDish,
             viewModel = dishesDialogViewModel,
-            modifier = Modifier.padding(15.dp)
+            modifier = Modifier
+                .padding(horizontal = 15.dp)
+                .padding(bottom = 15.dp)
         )
     }
     LazyColumn(
         modifier = modifier.fillMaxSize()
     ) {
         items(dishesListUiState.dishesList) { dish ->
+            Log.d("uri", dish.imgSrc.toString())
             DishItem(
                 item = dish,
                 modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp),

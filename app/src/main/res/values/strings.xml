@@ -1,11 +1,14 @@
 <resources>
     <string name="app_name">Calories</string>
-    <string name="carbs">CARBS</string>
-    <string name="fats">FATS</string>
-    <string name="proteins">PROTEINS</string>
+    <string name="dish_name">Name</string>
+    <string name="dish_description">Description</string>
+    <string name="proteins">Proteins</string>
+    <string name="fats">Fats</string>
+    <string name="carbs">Carbs</string>
 
     <!--Accessibility-->
 
     <string name="dish_image">Image of the dish</string>
-    <string name="add_dish_fab">Add dish floating action button</string>
+    <string name="add_dish_fab">Add dish button</string>
+    <string name="save_dish_fab">Save dish button</string>
 </resources>

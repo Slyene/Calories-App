@@ -12,9 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Warning
-import androidx.compose.material3.Card
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -24,8 +22,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -42,7 +42,7 @@ fun DishItem(
     modifier: Modifier = Modifier,
     onClick: (Int) -> Unit
 ) {
-    Card(
+    ElevatedCard(
         onClick = { onClick(item.id) },
         modifier = modifier
             .height(100.dp)
@@ -70,7 +70,7 @@ fun DishItem(
                     )
                 } else {
                     Image(
-                        imageVector = Icons.Rounded.Warning,
+                        imageVector = ImageVector.vectorResource(id = R.drawable.rounded_image_24),
                         contentDescription = "",
                         colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.outline),
                         modifier = Modifier
@@ -103,7 +103,7 @@ fun DishItem(
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Text(
-                            text = stringResource(id = R.string.proteins),
+                            text = stringResource(id = R.string.proteins).uppercase(),
                             color = MaterialTheme.colorScheme.onTertiaryContainer,
                             fontWeight = FontWeight.Bold,
                             fontSize = 10.sp
@@ -117,7 +117,7 @@ fun DishItem(
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Text(
-                            text = stringResource(id = R.string.fats),
+                            text = stringResource(id = R.string.fats).uppercase(),
                             color = MaterialTheme.colorScheme.onTertiaryContainer,
                             fontWeight = FontWeight.Bold,
                             fontSize = 10.sp
@@ -131,7 +131,7 @@ fun DishItem(
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Text(
-                            text = stringResource(id = R.string.carbs),
+                            text = stringResource(id = R.string.carbs).uppercase(),
                             color = MaterialTheme.colorScheme.onTertiaryContainer,
                             fontWeight = FontWeight.Bold,
                             fontSize = 10.sp

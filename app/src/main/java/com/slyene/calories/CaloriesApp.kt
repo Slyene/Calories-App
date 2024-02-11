@@ -1,14 +1,14 @@
 package com.slyene.calories
 
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.vectorResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.slyene.calories.ui.CaloriesFab
 import com.slyene.calories.ui.CaloriesNavigationBar
@@ -32,7 +32,7 @@ fun CaloriesApp() {
             CaloriesNavigationBar()
         },
         floatingActionButton = {
-            CaloriesFab(icon = Icons.Default.Add) {
+            CaloriesFab(icon = ImageVector.vectorResource(id = R.drawable.rounded_add_24)) {
                 dishesViewModel.selectDish(0)
                 dishesViewModel.changeDialogShowState()
             }
