@@ -88,14 +88,13 @@ fun DishItem(
             ) {
                 Text(
                     text = item.name,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                     fontWeight = FontWeight.Bold
                 )
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(10.dp))
-                        .background(MaterialTheme.colorScheme.tertiaryContainer)
+                        .background(MaterialTheme.colorScheme.secondaryContainer)
                         .padding(8.dp),
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
@@ -104,13 +103,13 @@ fun DishItem(
                     ) {
                         Text(
                             text = stringResource(id = R.string.proteins).uppercase(),
-                            color = MaterialTheme.colorScheme.onTertiaryContainer,
+                            color = MaterialTheme.colorScheme.onSecondaryContainer,
                             fontWeight = FontWeight.Bold,
                             fontSize = 10.sp
                         )
                         Text(
                             text = item.proteins.ifEmpty { "0" },
-                            color = MaterialTheme.colorScheme.onTertiaryContainer
+                            color = MaterialTheme.colorScheme.onSecondaryContainer
                         )
                     }
                     Column(
@@ -118,13 +117,13 @@ fun DishItem(
                     ) {
                         Text(
                             text = stringResource(id = R.string.fats).uppercase(),
-                            color = MaterialTheme.colorScheme.onTertiaryContainer,
+                            color = MaterialTheme.colorScheme.onSecondaryContainer,
                             fontWeight = FontWeight.Bold,
                             fontSize = 10.sp
                         )
                         Text(
                             text = item.fats.ifEmpty { "0" },
-                            color = MaterialTheme.colorScheme.onTertiaryContainer
+                            color = MaterialTheme.colorScheme.onSecondaryContainer
                         )
                     }
                     Column(
@@ -132,13 +131,13 @@ fun DishItem(
                     ) {
                         Text(
                             text = stringResource(id = R.string.carbs).uppercase(),
-                            color = MaterialTheme.colorScheme.onTertiaryContainer,
+                            color = MaterialTheme.colorScheme.onSecondaryContainer,
                             fontWeight = FontWeight.Bold,
                             fontSize = 10.sp
                         )
                         Text(
                             text = item.carbs.ifEmpty { "0" },
-                            color = MaterialTheme.colorScheme.onTertiaryContainer
+                            color = MaterialTheme.colorScheme.onSecondaryContainer
                         )
                     }
                 }
