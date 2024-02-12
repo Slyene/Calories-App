@@ -6,10 +6,15 @@
     <string name="proteins">Белки</string>
     <string name="fats">Жиры</string>
     <string name="carbs">Углеводы</string>
+    <string name="add_dish_title">Блюдо</string>
 
     <!--Accessibility-->
 
     <string name="dish_image">Изображение блюда</string>
     <string name="add_dish_fab">Кнопка добавления блюда</string>
     <string name="save_dish_fab">Кнопка сохранения блюда</string>
+    <string name="dishes_screen_title">Dishes</string>
+    <string name="catalog_screen_title">Catalog</string>
+    <string name="meals_screen_title">Meals</string>
+    <string name="statistics_screen_title">Statistics</string>
 </resources>

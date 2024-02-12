@@ -2,7 +2,6 @@ package com.slyene.calories.di
 
 import android.content.Context
 import androidx.room.Room
-import androidx.room.migration.Migration
 import com.slyene.calories.data.CaloriesRepository
 import com.slyene.calories.data.source.local.CaloriesDatabase
 import com.slyene.calories.data.source.local.DishDao
@@ -20,7 +19,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class RepositoryModule {
-
     @Singleton
     @Binds
     abstract fun bindLocalCaloriesRepository(repository: LocalCaloriesRepository): CaloriesRepository
@@ -33,7 +31,6 @@ abstract class RepositoryModule {
 @Module
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
-
     @Singleton
     @Provides
     fun provideDataBase(@ApplicationContext context: Context): CaloriesDatabase {

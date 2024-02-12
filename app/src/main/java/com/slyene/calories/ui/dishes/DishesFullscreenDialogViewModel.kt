@@ -20,12 +20,9 @@ class DishesFullscreenDialogViewModel @Inject constructor(
         MutableStateFlow(DishesFullscreenDialogUiState())
     val uiState: StateFlow<DishesFullscreenDialogUiState> = _uiState.asStateFlow()
 
-    fun getDish(id: Int) {
-        var dish: Dish?
-
-        viewModelScope.launch {
-            dish = localCaloriesRepository.getDishById(id)
-            updateState(item = dish ?: Dish())
+    fun getDish(item: Dish?) {
+        _uiState.update {
+            DishesFullscreenDialogUiState(item = item ?: Dish())
         }
     }
 

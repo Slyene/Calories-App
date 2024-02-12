@@ -13,12 +13,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.slyene.calories.data.Dish
 import com.slyene.calories.ui.theme.CaloriesTheme
 
 @Composable
 fun DishesScreen(
     dishesDialogViewModel: DishesFullscreenDialogViewModel,
-    onDishClick: (Int) -> Unit,
+    onDishClick: (Dish) -> Unit,
     onSaveClick: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: DishesViewModel = viewModel(),
@@ -29,6 +30,10 @@ fun DishesScreen(
     if (dishesUiState.showDialog) {
         DishesFullscreenDialog(
             onSaveClick = onSaveClick,
+            onDeleteClick = { dish ->
+                viewModel.changeDialogShowState()
+                viewModel.deleteDish(dish)
+            },
             onDismissClick = viewModel::changeDialogShowState,
             onBackPressed = viewModel::changeDialogShowState,
             selectedDish = dishesUiState.selectedDish,

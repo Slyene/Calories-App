@@ -40,10 +40,10 @@ import com.slyene.calories.ui.theme.CaloriesTheme
 fun DishItem(
     item: Dish,
     modifier: Modifier = Modifier,
-    onClick: (Int) -> Unit
+    onClick: (Dish) -> Unit
 ) {
     ElevatedCard(
-        onClick = { onClick(item.id) },
+        onClick = { onClick(item) },
         modifier = modifier
             .height(100.dp)
             .fillMaxWidth(),

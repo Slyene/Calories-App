@@ -40,6 +40,7 @@ import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.slyene.calories.R
+import com.slyene.calories.data.Dish
 import com.slyene.calories.ui.CaloriesPhotoPicker
 import com.slyene.calories.ui.CaloriesFab
 
@@ -48,9 +49,10 @@ import com.slyene.calories.ui.CaloriesFab
 @Composable
 fun DishesFullscreenDialog(
     onSaveClick: () -> Unit,
+    onDeleteClick: (Dish) -> Unit,
     onDismissClick: () -> Unit,
     onBackPressed: () -> Unit,
-    selectedDish: Int,
+    selectedDish: Dish?,
     modifier: Modifier = Modifier,
     viewModel: DishesFullscreenDialogViewModel = viewModel()
 ) {
@@ -68,7 +70,7 @@ fun DishesFullscreenDialog(
         Scaffold(
             topBar = {
                 TopAppBar(
-                    title = { Text(text = "Add dish") },
+                    title = { Text(text = stringResource(id = R.string.add_dish_title)) },
                     navigationIcon = {
                         IconButton(onClick = onBackPressed) {
                             Image(
@@ -76,6 +78,17 @@ fun DishesFullscreenDialog(
                                 contentDescription = null,
                                 colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface)
                             )
+                        }
+                    },
+                    actions = {
+                        if (uiState.item.id != 0) {
+                            IconButton(onClick = { onDeleteClick(uiState.item) }) {
+                                Image(
+                                    imageVector = ImageVector.vectorResource(id = R.drawable.rounded_delete_24),
+                                    contentDescription = null,
+                                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface)
+                                )
+                            }
                         }
                     }
                 )
