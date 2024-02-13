@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 
 @Composable
 fun CaloriesNavigationBar(
@@ -23,7 +24,7 @@ fun CaloriesNavigationBar(
     ) {
         NavigationBarItem(
             selected = false,
-            onClick = { navController.navigate(CaloriesDestinations.Statistics.route) },
+            onClick = { navController.navigate(CaloriesDestinations.StatisticsScreen.route) },
             icon = {
                 Icon(
                     imageVector = Icons.Default.Info,
@@ -31,13 +32,13 @@ fun CaloriesNavigationBar(
                 )
             },
             label = {
-                Text(text = stringResource(id = CaloriesDestinations.Statistics.title))
+                Text(text = stringResource(id = CaloriesDestinations.StatisticsScreen.title))
             }
         )
 
         NavigationBarItem(
             selected = false,
-            onClick = { navController.navigate(CaloriesDestinations.Meals.route) },
+            onClick = { navController.navigate(CaloriesDestinations.MealsScreen.route) },
             icon = {
                 Icon(
                     imageVector = Icons.Default.Info,
@@ -45,13 +46,13 @@ fun CaloriesNavigationBar(
                 )
             },
             label = {
-                Text(text = stringResource(id = CaloriesDestinations.Meals.title))
+                Text(text = stringResource(id = CaloriesDestinations.MealsScreen.title))
             }
         )
 
         NavigationBarItem(
             selected = false,
-            onClick = { navController.navigate(CaloriesDestinations.Dishes.route) },
+            onClick = { navController.navigate(CaloriesDestinations.DishesScreen.route) },
             icon = {
                 Icon(
                     imageVector = Icons.Default.Info,
@@ -59,13 +60,13 @@ fun CaloriesNavigationBar(
                 )
             },
             label = {
-                Text(text = stringResource(id = CaloriesDestinations.Dishes.title))
+                Text(text = stringResource(id = CaloriesDestinations.DishesScreen.title))
             }
         )
 
         NavigationBarItem(
             selected = false,
-            onClick = { navController.navigate(CaloriesDestinations.Catalog.route) },
+            onClick = { navController.popBackStack(CaloriesDestinations.CatalogScreen.route, true) },
             icon = {
                 Icon(
                     imageVector = Icons.Default.Info,
@@ -73,7 +74,7 @@ fun CaloriesNavigationBar(
                 )
             },
             label = {
-                Text(text = stringResource(id = CaloriesDestinations.Catalog.title))
+                Text(text = stringResource(id = CaloriesDestinations.CatalogScreen.title))
             }
         )
     }
