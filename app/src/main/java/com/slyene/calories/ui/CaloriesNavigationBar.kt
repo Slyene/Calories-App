@@ -16,7 +16,7 @@ import androidx.navigation.NavOptions
 
 @Composable
 fun CaloriesNavigationBar(
-    navController: NavController,
+    onClick: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     NavigationBar(
@@ -24,7 +24,7 @@ fun CaloriesNavigationBar(
     ) {
         NavigationBarItem(
             selected = false,
-            onClick = { navController.navigate(CaloriesDestinations.StatisticsScreen.route) },
+            onClick = { onClick(CaloriesDestinations.StatisticsScreen.route) },
             icon = {
                 Icon(
                     imageVector = Icons.Default.Info,
@@ -38,7 +38,7 @@ fun CaloriesNavigationBar(
 
         NavigationBarItem(
             selected = false,
-            onClick = { navController.navigate(CaloriesDestinations.MealsScreen.route) },
+            onClick = { onClick(CaloriesDestinations.MealsScreen.route) },
             icon = {
                 Icon(
                     imageVector = Icons.Default.Info,
@@ -52,7 +52,7 @@ fun CaloriesNavigationBar(
 
         NavigationBarItem(
             selected = false,
-            onClick = { navController.navigate(CaloriesDestinations.DishesScreen.route) },
+            onClick = { onClick(CaloriesDestinations.DishesScreen.route) },
             icon = {
                 Icon(
                     imageVector = Icons.Default.Info,
@@ -66,7 +66,7 @@ fun CaloriesNavigationBar(
 
         NavigationBarItem(
             selected = false,
-            onClick = { navController.popBackStack(CaloriesDestinations.CatalogScreen.route, true) },
+            onClick = { onClick(CaloriesDestinations.CatalogScreen.route) },
             icon = {
                 Icon(
                     imageVector = Icons.Default.Info,

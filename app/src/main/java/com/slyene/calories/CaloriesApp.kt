@@ -10,6 +10,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavOptions
+import androidx.navigation.NavOptionsBuilder
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.slyene.calories.ui.CaloriesDestinations
@@ -25,11 +27,12 @@ fun CaloriesApp() {
     val dishesViewModel: DishesViewModel = viewModel()
     val dishesDialogViewModel: DishesFullscreenDialogViewModel = viewModel()
     val navController = rememberNavController()
+    val startDestination = CaloriesDestinations.StatisticsScreen.route
 
     // Get current back stack entry
     val backStackEntry by navController.currentBackStackEntryAsState()
     // Get the name of the current screen
-    val currentScreen = (backStackEntry?.destination?.route ?: CaloriesDestinations.StatisticsScreen.route)
+    val currentScreen = backStackEntry?.destination?.route ?: CaloriesDestinations.StatisticsScreen.route
 
 
     Scaffold(
@@ -41,10 +44,12 @@ fun CaloriesApp() {
             )
         },
         bottomBar = {
-            CaloriesNavigationBar(navController = navController)
+            CaloriesNavigationBar(onClick = { route ->
+                navController.navigate(route, NavOptions.Builder().setPopUpTo(navController.currentBackStack.value.last().destination.route, inclusive = true).build())
+            })
         },
         floatingActionButton = {
-            if (currentScreen == CaloriesDestinations.DishesScreen.route) {
+            if (currentScreen == CaloriesDestinations.DishesScreen.Dishes.route) {
                 CaloriesFab(icon = ImageVector.vectorResource(id = R.drawable.rounded_add_24)) {
                     dishesViewModel.selectDish(null)
                     dishesViewModel.changeDialogShowState()
@@ -56,7 +61,7 @@ fun CaloriesApp() {
             dishesViewModel = dishesViewModel,
             dishesDialogViewModel = dishesDialogViewModel,
             navController = navController,
-            startDestination = CaloriesDestinations.StatisticsScreen.route,
+            startDestination = startDestination,
             modifier = Modifier.padding(it)
         )
     }

@@ -94,34 +94,5 @@ fun CaloriesNavHost(
 
             }
         }
-
-//        composable(
-//            route = CaloriesDestinations.Meals.route
-//        ) {
-//
-//        }
-//
-//        composable(
-//            route = CaloriesDestinations.Dishes.route
-//        ) {
-//            DishesScreen(
-//                viewModel = dishesViewModel,
-//                dishesDialogViewModel = dishesDialogViewModel,
-//                onDishClick = { dish ->
-//                    dishesViewModel.selectDish(dish)
-//                    dishesViewModel.changeDialogShowState()
-//                },
-//                onSaveClick = {
-//                    dishesDialogViewModel.saveDishToLocalStorage()
-//                    dishesViewModel.changeDialogShowState()
-//                }
-//            )
-//        }
-//
-//        composable(
-//            route = CaloriesDestinations.Catalog.route
-//        ) {
-//
-//        }
     }
 }
