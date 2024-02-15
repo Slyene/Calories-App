@@ -32,7 +32,8 @@ fun CaloriesApp() {
     // Get current back stack entry
     val backStackEntry by navController.currentBackStackEntryAsState()
     // Get the name of the current screen
-    val currentScreen = backStackEntry?.destination?.route ?: CaloriesDestinations.StatisticsScreen.route
+    val currentScreen =
+        backStackEntry?.destination?.route ?: CaloriesDestinations.StatisticsScreen.route
 
 
     Scaffold(
@@ -44,9 +45,18 @@ fun CaloriesApp() {
             )
         },
         bottomBar = {
-            CaloriesNavigationBar(onClick = { route ->
-                navController.navigate(route, NavOptions.Builder().setPopUpTo(navController.currentBackStack.value.last().destination.route, inclusive = true).build())
-            })
+            CaloriesNavigationBar(
+                onClick = { route ->
+                    navController.navigate(
+                        route,
+                        NavOptions.Builder()
+                            .setPopUpTo(backStackEntry?.destination?.parent?.route, inclusive = true)
+                            .build()
+                    )
+                },
+                currentScreen = currentScreen
+            )
+
         },
         floatingActionButton = {
             if (currentScreen == CaloriesDestinations.DishesScreen.Dishes.route) {
